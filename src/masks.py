@@ -17,4 +17,4 @@ def get_mask_account(account_number: str) -> str:
     if not account_number.isdigit():
         raise ValueError("Номер счёта должен состоять из цифр")
 
-    return "**" + account_number[-4:]``
+    return "**" + account_number[-4:]
