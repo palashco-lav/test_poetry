@@ -15,3 +15,14 @@ def mask_account_card(card_type_and_number: str) -> str:
         mask_result = masks.get_mask_card_number(divided_card_type_and_number[-1])
 
     return ''.join(divided_card_type_and_number[x] + " " for x in range(len(divided_card_type_and_number) - 1)) + mask_result
+
+
+def get_date(time_to_convert: str) -> str:
+    """Функция преобразует формат даты "2024-03-11T02:26:18.671407" в "ДД.ММ.ГГГГ"
+    :param time_to_convert:
+    :return:
+    """
+    divided_time_to_convert = (time_to_convert.split("T")[0]).split("-") #Сначала отсекаю всё что после символа "T",
+    #затем разделяю по символу ":" для пересборки
+
+    return divided_time_to_convert[2] + "." + divided_time_to_convert[1] + "." + divided_time_to_convert[0]
