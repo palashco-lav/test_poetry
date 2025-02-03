@@ -15,8 +15,8 @@ def mask_account_card(card_type_and_number: str) -> str:
         # Выполняю маркирование карты
         mask_result = masks.get_mask_card_number(divided_card_type_and_number[-1])
 
-    return (''.join(divided_card_type_and_number[x] + " " for x in range(len(divided_card_type_and_number) - 1))
-            + mask_result)
+    title = ' '.join(divided_card_type_and_number[:-1])
+    return f"{title} {mask_result}"
 
 
 def get_date(time_to_convert: str) -> str:
