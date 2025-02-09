@@ -7,3 +7,5 @@ data = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.51236
 
 print(processing.sort_by_date(data, False))
 print(processing.sort_by_date(data))
+
+print(processing.filter_by_state(data))
