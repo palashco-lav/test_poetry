@@ -2,7 +2,7 @@ from datetime import datetime
 
 
 def filter_by_state(dicts_list: list, state: str = 'EXECUTED') -> list:
-    """Функция принимает список словарей и опционально значение для ключа state  (по умолчанию 'EXECUTED').
+    """Функция принимает список словарей и опционально значение для ключа state (по умолчанию 'EXECUTED').
     Функция возвращает новый список словарей, содержащий только те словари, у которых ключ state
     соответствует указанному значению.
     :param dicts_list:
@@ -15,9 +15,9 @@ def filter_by_state(dicts_list: list, state: str = 'EXECUTED') -> list:
 
     dicts_result = []
 
-    for dict_num in range(len(dicts_list)):
-        if dicts_list[dict_num].get('state') == state:
-            dicts_result.append(dicts_list[dict_num])
+    for dictionary_index in range(len(dicts_list)):
+        if dicts_list[dictionary_index].get('state') == state:
+            dicts_result.append(dicts_list[dictionary_index])
 
     return dicts_result
 
