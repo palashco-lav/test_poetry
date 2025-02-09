@@ -28,7 +28,7 @@ def sort_by_date(dicts_to_sort: list, sort_decrease: bool = True) -> list:
     отсортированный по дате (date).
 
     :param dicts_to_sort:
-    :param sort_order:  ['DECR', 'INCR']:
+    :param sort_decrease: - по умолчанию True
     :return:
     """
 
