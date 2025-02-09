@@ -22,7 +22,7 @@ def filter_by_state(dicts_list: list, state: str = 'EXECUTED') -> list:
     return dicts_result
 
 
-def sort_by_date(dicts_to_sort: dict, sort_order: str = 'DECR') -> dict:
+def sort_by_date(dicts_to_sort: list, sort_order: str = 'DECR') -> list:
     """Функция sort_by_date, которая принимает список словарей и необязательный параметр,
     задающий порядок сортировки (по умолчанию — убывание). Функция должна возвращать новый список,
     отсортированный по дате (date).
