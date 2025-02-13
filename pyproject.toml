@@ -3,7 +3,7 @@ name = "test-poetry"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Lobanov A.V.",email = "you@example.com"}
+    {name = "Lobanov A.V.",email = "lav1986@inbox.ru"}
 ]
 readme = "README.md"
 requires-python = ">=3.13"
