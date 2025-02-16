@@ -37,6 +37,10 @@ git clone https://github.com/palashco-lav/test_poetry.git
     отсортированный по дате (date).
     :param dicts_to_sort:
     :param sort_decrease: - по умолчанию True
+### Модули тестов
+    test_masks.py       - проверка модуля masks, покрытие 100%
+    test_processing.py  - проверка модуля processing, покрытие 100%
+    test_widget.py      - проверка модуля widget, покрытие 100%
 ## Документация:
 
 Для получения дополнительной информации обратитесь к [документации](README.md).
