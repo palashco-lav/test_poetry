@@ -14,6 +14,9 @@ def get_mask_account(account_number: str) -> str:
     возвращает маску номера по правилу **XXXX"""
     pass
     # Проверка, что номер счета состоит из цифр
+    if len(account_number) == 0:
+        raise ValueError("Аргумент функции не должен быть пустым")
+
     if not account_number.isdigit():
         raise ValueError("Номер счёта должен состоять из цифр")
 

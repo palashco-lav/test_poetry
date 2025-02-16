@@ -12,6 +12,9 @@ def filter_by_state(dicts_list: list, state: str = 'EXECUTED') -> list:
     # Проверка
     if len(dicts_list) == 0:
         raise ValueError("Длина списка нулевая")
+    # Если передали пустой ключ, заменяю его на значение по умолчанию
+    if state == '':
+        state = 'EXECUTED'
 
     dicts_result = []
 

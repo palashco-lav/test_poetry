@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from src import masks
 
 
@@ -22,7 +24,13 @@ def mask_account_card(card_type_and_number: str) -> str:
 def get_date(time_to_convert: str) -> str:
     """Функция преобразует формат даты "2024-03-11T02:26:18.671407" в "ДД.ММ.ГГГГ"
     """
-    divided_time_to_convert = (time_to_convert.split("T")[0]).split("-")  # Сначала отсекаю всё что после символа "T",
-    # затем разделяю по символу ":" для пересборки
 
-    return divided_time_to_convert[2] + "." + divided_time_to_convert[1] + "." + divided_time_to_convert[0]
+    if time_to_convert == '':
+        raise ValueError("Данные для обработки отсутствуют")
+    try:
+        time_to_convert_2 = datetime.strptime(time_to_convert, '%Y-%m-%dT%H:%M:%S.%f')
+
+    except ValueError:
+        raise ValueError("Это не дата")
+
+    return time_to_convert_2.strftime('%d.%m.%Y')
