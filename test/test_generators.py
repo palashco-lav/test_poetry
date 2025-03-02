@@ -1,8 +1,7 @@
 import pytest
+from conftest import fix_generators_data_rub_test, fix_generators_data_test, fix_generators_data_usd_test
 
-from conftest import fix_generators_data_test, fix_generators_data_usd_test, fix_generators_data_rub_test
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
-
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 def test_filter_by_currency_param_executed() -> None:

@@ -1,5 +1,6 @@
 from typing import Iterator
 
+
 def filter_by_currency(dicts_list: list, value: str) -> Iterator[list]:
     """Функция принимает на вход список словарей, представляющих транзакции.
     Функция возвращает итератор, который поочередно выдает транзакции,
