@@ -5,23 +5,19 @@ import pytest
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
-def test_filter_by_currency_param_executed() -> None:
+def test_filter_by_currency_param_executed(fix_generators_data_test: list, fix_generators_data_usd_test: list, fix_generators_data_rub_test: list) -> None:
 
     usd_transactions = filter_by_currency(fix_generators_data_test, "USD")
     rub_transactions = filter_by_currency(fix_generators_data_test, "RUB")
 
-    assert next(usd_transactions, "") == fix_generators_data_usd_test[0]
+    for count in range(len(fix_generators_data_usd_test)):
+        assert next(usd_transactions, "") == fix_generators_data_usd_test[count]
 
-    assert next(usd_transactions, "") == fix_generators_data_usd_test[1]
-
-    assert next(usd_transactions, "") == fix_generators_data_usd_test[2]
-
-    assert next(rub_transactions, "") == fix_generators_data_rub_test[0]
-
-    assert next(rub_transactions, "") == fix_generators_data_rub_test[1]
+    for count in range(len(fix_generators_data_rub_test)):
+        assert next(rub_transactions, "") == fix_generators_data_rub_test[count]
 
 
-def test_filter_by_currency_param_no_value() -> None:
+def test_filter_by_currency_param_no_value(fix_generators_data_test: list) -> None:
 
     it_transactions = filter_by_currency(fix_generators_data_test, "UK")
 
@@ -31,18 +27,12 @@ def test_filter_by_currency_param_no_value() -> None:
     assert next(it_transactions, "") == ""
 
 
-def test_transaction_descriptions() -> None:
+def test_transaction_descriptions(fix_generators_data_test: list, fix_transaction_descriptions_test: list) -> None:
     it_transactions_descriptions = transaction_descriptions(fix_generators_data_test)
 
-    assert next(it_transactions_descriptions, "") == "Перевод организации"
+    for count in range(len(fix_transaction_descriptions_test)):
+        assert next(it_transactions_descriptions, "") == fix_transaction_descriptions_test[count]
 
-    assert next(it_transactions_descriptions, "") == "Перевод со счета на счет"
-
-    assert next(it_transactions_descriptions, "") == "Перевод со счета на счет"
-
-    assert next(it_transactions_descriptions, "") == "Перевод с карты на карту"
-
-    assert next(it_transactions_descriptions, "") == "Перевод организации"
 
 
 def test_transaction_descriptions_empy() -> None:
@@ -51,38 +41,38 @@ def test_transaction_descriptions_empy() -> None:
     assert next(it_transactions_descriptions, "") == ""
 
 
-def test_def_card_number_generator() -> None:
-    it_card_number_generator = card_number_generator(1, 5)
+def test_def_card_number_generator(test_def_card_number_generator: dict, test_def_card_number_generator_2: dict) -> None:
+    it_card_number_generator = card_number_generator(test_def_card_number_generator["start"],
+                                                     test_def_card_number_generator["stop"])
 
-    assert next(it_card_number_generator, "") == "0000 0000 0000 0001"
-    assert next(it_card_number_generator, "") == "0000 0000 0000 0002"
-    assert next(it_card_number_generator, "") == "0000 0000 0000 0003"
-    assert next(it_card_number_generator, "") == "0000 0000 0000 0004"
-    assert next(it_card_number_generator, "") == "0000 0000 0000 0005"
+    for count in range(len(test_def_card_number_generator["expected_result"])):
+        assert next(it_card_number_generator, "") == test_def_card_number_generator["expected_result"][count]
 
-    it_card_number_generator = card_number_generator(1000000000001, 1000000000005)
+    it_card_number_generator = card_number_generator(test_def_card_number_generator_2["start"],
+                                                     test_def_card_number_generator_2["stop"])
 
-    assert next(it_card_number_generator, "") == "0001 0000 0000 0001"
-    assert next(it_card_number_generator, "") == "0001 0000 0000 0002"
-    assert next(it_card_number_generator, "") == "0001 0000 0000 0003"
-    assert next(it_card_number_generator, "") == "0001 0000 0000 0004"
-    assert next(it_card_number_generator, "") == "0001 0000 0000 0005"
+    for count in range(len(test_def_card_number_generator_2["expected_result"])):
+        assert next(it_card_number_generator, "") == test_def_card_number_generator_2["expected_result"][count]
 
 
 def test_def_card_number_generator_wrong_arguments() -> None:
-    """Проверка на ошибку при вызове с пустым аргументом"""
+    """Проверка на ошибку при вызове с неправильными аргументами"""
+    """start больше stop"""
     it_card_number_generator = card_number_generator(5, 3)
     with pytest.raises(ValueError):
         next(it_card_number_generator)
 
+    """stop выходит за диапазон"""
     it_card_number_generator = card_number_generator(5, 10000000000000000)
     with pytest.raises(ValueError):
         next(it_card_number_generator)
 
+    """start отрицательное значение"""
     it_card_number_generator = card_number_generator(-5, 10000000000000)
     with pytest.raises(ValueError):
         next(it_card_number_generator)
 
+    """start и stop отрицательное значения"""
     it_card_number_generator = card_number_generator(-5, -3)
     with pytest.raises(ValueError):
         next(it_card_number_generator)
