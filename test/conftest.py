@@ -70,6 +70,7 @@ def fix_widget_data_test() -> list:
         {"string": "2002-09-25T22:06:11.987407", "expected_result": "25.09.2002"},
     ]
 
+
 @pytest.fixture
 def fix_generators_data_test() -> list:
     return \
