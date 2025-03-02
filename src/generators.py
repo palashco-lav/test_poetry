@@ -21,6 +21,7 @@ def filter_by_currency(dicts_list: list, value: str) -> Iterator[list]:
         if dict_element["operationAmount"]["currency"]["code"] == value:
             yield dict_element
 
+
 def transaction_descriptions(dicts_list: list) -> Iterator[str]:
     """
     Функция принимает список словарей с транзакциями и возвращает
@@ -30,6 +31,7 @@ def transaction_descriptions(dicts_list: list) -> Iterator[str]:
     """
     for dict_element in dicts_list:
         yield dict_element["description"]
+
 
 def card_number_generator(start: int, stop: int) -> Iterator[str]:
     """

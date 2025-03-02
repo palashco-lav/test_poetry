@@ -1,5 +1,6 @@
+from test.conftest import fix_generators_data_rub_test, fix_generators_data_test, fix_generators_data_usd_test
+
 import pytest
-from conftest import fix_generators_data_rub_test, fix_generators_data_test, fix_generators_data_usd_test
 
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
@@ -19,14 +20,16 @@ def test_filter_by_currency_param_executed() -> None:
 
     assert next(rub_transactions, "") == fix_generators_data_rub_test[1]
 
+
 def test_filter_by_currency_param_no_value() -> None:
 
     it_transactions = filter_by_currency(fix_generators_data_test, "UK")
 
-    assert next(it_transactions,"") == ""
+    assert next(it_transactions, "") == ""
 
     it_transactions = filter_by_currency([], "UK")
     assert next(it_transactions, "") == ""
+
 
 def test_transaction_descriptions() -> None:
     it_transactions_descriptions = transaction_descriptions(fix_generators_data_test)
@@ -40,6 +43,7 @@ def test_transaction_descriptions() -> None:
     assert next(it_transactions_descriptions, "") == "Перевод с карты на карту"
 
     assert next(it_transactions_descriptions, "") == "Перевод организации"
+
 
 def test_transaction_descriptions_empy() -> None:
     it_transactions_descriptions = transaction_descriptions([])
@@ -63,6 +67,7 @@ def test_def_card_number_generator() -> None:
     assert next(it_card_number_generator, "") == "0001 0000 0000 0003"
     assert next(it_card_number_generator, "") == "0001 0000 0000 0004"
     assert next(it_card_number_generator, "") == "0001 0000 0000 0005"
+
 
 def test_def_card_number_generator_wrong_arguments() -> None:
     """Проверка на ошибку при вызове с пустым аргументом"""
