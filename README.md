@@ -37,6 +37,26 @@ git clone https://github.com/palashco-lav/test_poetry.git
     отсортированный по дате (date).
     :param dicts_to_sort:
     :param sort_decrease: - по умолчанию True
+
+### Модуль generators
+    filter_by_currency - Функция принимает на вход список словарей, представляющих транзакции.     Функция возвращает 
+    итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной (например, USD).
+    :rtype: object
+    :param dicts_list:
+    :param value:
+    :return:
+
+    transaction_descriptions - Функция принимает список словарей с транзакциями и возвращает     описание каждой 
+    операции по очереди
+    :param dicts_list:
+
+    card_number_generator - Функция, которая выдает номера банковских карт в формате XXXX XXXX XXXX XXXX, где X — цифра 
+    номера карты. Генератор может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 
+    9999 9999 9999 9999.
+    :param start:
+    :param stop:
+    :return:
+
 ### Тестирование
 test_masks.py       - проверка модуля masks, покрытие 100%
 
@@ -114,6 +134,26 @@ test_widget.py      - проверка модуля widget, покрытие 100
 
     Ошибки при передаче неверных параметров
         test_get_date_wrong() -> None
+
+test_generators.py      - проверка модуля generators, покрытие 100%
+    
+    Прроверка работоспособности функции filter_by_currency
+        test_filter_by_currency_param_executed()
+    
+    Провертка обработки пустых аргументов функции filter_by_currency
+        test_filter_by_currency_param_no_value()
+    
+    Прроверка работоспособности функции transaction_descriptions
+        test_transaction_descriptions()
+    
+    Провертка обработки пустых аргументов функции transaction_descriptions
+        test_transaction_descriptions_empy()
+    
+    Прроверка работоспособности функции card_number_generator
+        test_def_card_number_generator()
+    
+    Прроверка реакции функции неверные входные аргументы
+        test_def_card_number_generator_wrong_arguments()
 
 ## Документация:
 
