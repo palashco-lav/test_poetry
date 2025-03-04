@@ -57,6 +57,10 @@ git clone https://github.com/palashco-lav/test_poetry.git
     :param stop:
     :return:
 
+### Модуль decorators
+    log(filename="") - декоратор ведения лгов для функций
+    filename - путь к фалу храненния логов. По умолчанию вывод ведётся  в консоль
+    
 ### Тестирование
 test_masks.py       - проверка модуля masks, покрытие 100%
 
@@ -155,6 +159,19 @@ test_generators.py      - проверка модуля generators, покрыт
     Прроверка реакции функции неверные входные аргументы
         test_def_card_number_generator_wrong_arguments()
 
+test_decorators.py      - проверка модуля decorators, покрытие 100%
+
+    Проверка корректности работы декоратора log при записи в файл
+        test_log_decorator_file_out
+
+    Проверка корректности работы декоратора log при выводе данных в консоль
+        test_log_decorator_console_out
+
+    Проверка обработки исключений случаев log при выводе данных в консоль 
+        test_log_decorator_error_console_out
+
+    Проверка обработки исключений случаев log при записи в файл    
+        test_log_decorator_error_file_out
 ## Документация:
 
 Для получения дополнительной информации обратитесь к [документации](README.md).
