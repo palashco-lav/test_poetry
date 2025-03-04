@@ -286,3 +286,50 @@ def test_def_card_number_generator_2() -> dict:
                     "0001 0000 0000 0005"
                 ]
         }
+
+@pytest.fixture
+def test_log_decorator_data() -> list:
+    return \
+        [
+            {
+                "x": 1,
+                "y": 2,
+                "expected_result": "my_function ok\n"
+            },
+            {
+                "x": 6,
+                "y": 2,
+                "expected_result": "my_function ok\n"
+            },
+            {
+                "x": 16,
+                "y": 22,
+                "expected_result": "my_function ok\n"
+            },
+            {
+                "x": 21,
+                "y": 15,
+                "expected_result": "my_function ok\n"
+            },
+            {
+                "x": 10,
+                "y": 7,
+                "expected_result": "my_function ok\n"
+            },
+        ]
+
+@pytest.fixture
+def test_log_decorator_data_errors() -> list:
+    return \
+        [
+            {
+                "x": -1,
+                "y": -2,
+                "expected_result": "my_function error: Переменные должны быть положительные. Inputs: (-1, -2), {}\n"
+            },
+            {
+                "x": "X",
+                "y": "Y",
+                "expected_result": "my_function error: Переменные должны быть числами. Inputs: (X, Y), {}\n"
+            },
+        ]
