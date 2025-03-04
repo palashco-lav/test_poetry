@@ -287,6 +287,7 @@ def test_def_card_number_generator_2() -> dict:
                 ]
         }
 
+
 @pytest.fixture
 def test_log_decorator_data() -> list:
     return \
@@ -317,6 +318,7 @@ def test_log_decorator_data() -> list:
                 "expected_result": "my_function ok\n"
             },
         ]
+
 
 @pytest.fixture
 def test_log_decorator_data_errors() -> list:
