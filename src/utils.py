@@ -1,5 +1,4 @@
 import json
-import os
 
 
 def get_transaction_data(file_path: str) -> list:

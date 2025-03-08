@@ -1,9 +1,9 @@
-import os
 import json
-from dotenv import load_dotenv
-import requests
+import os
 
-load_dotenv('.env')
+import requests
+from dotenv import load_dotenv
+
 
 def get_exchangerates_data(amount: float, amount_from: str, amount_to: str) -> float:
     """
@@ -13,12 +13,14 @@ def get_exchangerates_data(amount: float, amount_from: str, amount_to: str) -> f
     :param amount_to:       - трехбуквенный код валюты, в которую происходит конвертация.
     :return:
     """
-    headers = {'api-key': os.getenv('API_KEY')}
-    payload = {}
-    params = {'amount': amount, 'from': amount_from, 'to': amount_to}
+
 
     try:
-        response = requests.request("GET", os.getenv('BASE_URL'), headers=headers, data=payload)
+        # Загрузка переменных из .env-файла
+        load_dotenv()
+        url = os.getenv('BASE_URL_API')
+        headers = {'api-key': os.getenv('API_KEY')}
+        response = requests.get(url, headers=headers)
         response.raise_for_status()
     # запрос не может быть выполнен из-за проблем с сетью
     except requests.exceptions.ConnectionError:
@@ -47,7 +49,7 @@ def get_exchangerates_data(amount: float, amount_from: str, amount_to: str) -> f
         raise Exception("Not Found. The requested resource doesn't exist.")
     elif response.status_code == 429:
         raise Exception("Too many requests. Please check the rate limit.")
-    elif response.status_code >= 500:
+    else:
         raise Exception("Server Error. We have failed to process your request. (You can contact us anytime)")
 
 
@@ -66,6 +68,6 @@ def get_transaction_amount(transaction_data: dict) -> float:
     else:
         # если транзакция не в рублях, то выполняю конвертацию в рубли и возвращаю значение
         result = get_exchangerates_data(amount = float(transaction_data["operationAmount"]["amount"]),
-                               amount_from=transaction_data["operationAmount"]["currency"]["code"],
-                               amount_to="RUB")
+                                        amount_from=transaction_data["operationAmount"]["currency"]["code"],
+                                        amount_to="RUB")
         return result
