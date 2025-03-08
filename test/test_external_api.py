@@ -45,6 +45,13 @@ def test_get_exchangerates_data_error_400(mock_get_exchangerates_data_error_400:
 def test_get_transaction_amount(mock_get_transaction_amount: MagicMock,
                                 test_get_exchangerates_data_fix: list,
                                 fix_generators_data_usd_test: list) -> None:
+    """
+    Функция тест функции get_exchangerates_data - проверка преобразования данных
+    :param mock_get_transaction_amount:
+    :param test_get_exchangerates_data_fix:
+    :param fix_generators_data_usd_test:
+    :return:
+    """
     mock_get_transaction_amount.return_value.status_code = 200
     mock_get_transaction_amount.return_value.text = test_get_exchangerates_data_fix[0]["data"]
     test_data = fix_generators_data_usd_test

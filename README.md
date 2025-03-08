@@ -57,6 +57,27 @@ git clone https://github.com/palashco-lav/test_poetry.git
     :param stop:
     :return:
 
+### Модуль external_api
+    get_transaction_amount - Функция, принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях, тип 
+    данных — float. Если транзакция была в USD или EUR, происходит обращение к внешнему API для получения текущего курса
+    валют и конвертации суммы операции в рубли. Для конвертации валюты используется Exchange Rates Data API:
+    https://apilayer.com/exchangerates_data-api.
+    :param transaction_data:
+    :return:
+
+    et_exchangerates_data - Функция проводит конвертацию двух валют. С использованием API
+    :param amount:          - конвертируемая сумма.
+    :param amount_from:     - трехбуквенный код валюты, из которой происходит конвертация.
+    :param amount_to:       - трехбуквенный код валюты, в которую происходит конвертация.
+    :return:
+
+### Модуль utils
+    get_transaction_data - Функция чтения JSON-файла принимает путь к файлу JSON в качестве аргумента.
+    Функция чтения JSON-файла возвращает список словарей с данными о финансовых транзакциях.
+    Если JSON-файл пустой, содержит не-список или не найден, возвращается пустой список
+    :param file_path:
+    :return:
+
 ### Тестирование
 test_masks.py       - проверка модуля masks, покрытие 100%
 
@@ -154,6 +175,25 @@ test_generators.py      - проверка модуля generators, покрыт
     
     Прроверка реакции функции неверные входные аргументы
         test_def_card_number_generator_wrong_arguments()
+
+test_external_api.py      - проверка модуля external_api, покрытие 100%
+
+    Функция тест функции get_exchangerates_data - проверят правильность преобразования данных от API запроса
+        test_get_exchangerates_data
+
+    Функция тест функции get_exchangerates_data - проверка на возврат status_code = 400
+        test_get_exchangerates_data_error_400
+
+    Функция тест функции get_exchangerates_data - проверка преобразования данных
+        test_get_transaction_amount
+
+test_utils
+
+    Тестирование исключений
+        test_get_transaction_data_test_file
+
+    Провека функцию get_transaction_data на обработку данных с подменой данных от файла с помощью Mock
+        test_get_transaction_data
 
 ## Документация:
 
