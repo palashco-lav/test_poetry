@@ -3,6 +3,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 from dotenv import load_dotenv
+
 from src.external_api import get_exchangerates_data, get_transaction_amount
 
 
@@ -22,8 +23,8 @@ def test_get_exchangerates_data(mock_get_exchangerates_data: MagicMock, test_get
             == test_get_exchangerates_data_fix[0]["result"])
 
     headers = {'api-key': os.getenv('API_KEY')}
-    payload:dict = {}
-    mock_get_exchangerates_data.assert_called_once_with(os.getenv('BASE_URL_API'), headers=headers)
+    url = f'{os.getenv('BASE_URL_API')}RUB&from=USD&amount=1111.1'
+    mock_get_exchangerates_data.assert_called_once_with(url, headers=headers)
 
 
 @patch('requests.get')

@@ -13,12 +13,10 @@ def get_exchangerates_data(amount: float, amount_from: str, amount_to: str) -> f
     :param amount_to:       - трехбуквенный код валюты, в которую происходит конвертация.
     :return:
     """
-
-
     try:
         # Загрузка переменных из .env-файла
         load_dotenv()
-        url = os.getenv('BASE_URL_API')
+        url = f"{os.getenv('BASE_URL_API')}{amount_to}&from={amount_from}&amount={amount}"
         headers = {'api-key': os.getenv('API_KEY')}
         response = requests.get(url, headers=headers)
         response.raise_for_status()
@@ -67,7 +65,7 @@ def get_transaction_amount(transaction_data: dict) -> float:
         return float(transaction_data["operationAmount"]["amount"])
     else:
         # если транзакция не в рублях, то выполняю конвертацию в рубли и возвращаю значение
-        result = get_exchangerates_data(amount = float(transaction_data["operationAmount"]["amount"]),
+        result = get_exchangerates_data(amount=float(transaction_data["operationAmount"]["amount"]),
                                         amount_from=transaction_data["operationAmount"]["currency"]["code"],
                                         amount_to="RUB")
         return result
