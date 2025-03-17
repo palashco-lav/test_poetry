@@ -1,5 +1,3 @@
-# from test.conftest import fix_generators_data_rub_test, fix_generators_data_test, fix_generators_data_usd_test
-
 import pytest
 
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
