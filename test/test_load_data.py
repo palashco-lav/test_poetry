@@ -10,7 +10,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 @patch("builtins.open", new_callable=mock_open, read_data="1")
-def test_read_financial_trans_csv(mock_read_financial_trans_csv: MagicMock, test_read_financial_trans_csv_data: str):
+def test_read_financial_trans_csv(mock_read_financial_trans_csv: MagicMock,
+                                  test_read_financial_trans_csv_data: str) -> None:
 
     data = test_read_financial_trans_csv_data
 
@@ -24,7 +25,7 @@ def test_read_financial_trans_csv(mock_read_financial_trans_csv: MagicMock, test
         assert result == test_result  # Работает!
 
 
-def test_read_financial_trans_xlsx(test_read_financial_trans_xlsx_data: tuple):
+def test_read_financial_trans_xlsx(test_read_financial_trans_xlsx_data: tuple) -> None:
     # Определяю a DF как содержимое файла excel.
     data = pd.DataFrame(test_read_financial_trans_xlsx_data)
     mock_read_financial_trans_xlsx = Mock(return_value=data)
