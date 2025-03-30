@@ -1,4 +1,3 @@
-
 import json
 from pathlib import Path
 from unittest.mock import Mock
@@ -17,8 +16,8 @@ def test_get_transaction_data_test_file() -> None:
     :return:
     """
     assert get_transaction_data("") == []
-    assert get_transaction_data(f'{BASE_DIR}/test/no_file.json') == []
-    assert get_transaction_data(f'{BASE_DIR}/test/empy_file') == []
+    assert get_transaction_data(f"{BASE_DIR}/test/no_file.json") == []
+    assert get_transaction_data(f"{BASE_DIR}/test/empy_file") == []
 
 
 def test_get_transaction_data(test_get_json_list: str) -> None:
@@ -30,4 +29,4 @@ def test_get_transaction_data(test_get_json_list: str) -> None:
     data = json.loads(test_get_json_list)
     mock_json_load = Mock(return_value=data)
     json.load = mock_json_load
-    assert get_transaction_data(f'{BASE_DIR}/data/operations.json') == json.load(test_get_json_list)
+    assert get_transaction_data(f"{BASE_DIR}/data/operations.json") == json.load(test_get_json_list)
