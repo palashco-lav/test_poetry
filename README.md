@@ -65,7 +65,7 @@ git clone https://github.com/palashco-lav/test_poetry.git
     :param transaction_data:
     :return:
 
-    et_exchangerates_data - Функция проводит конвертацию двух валют. С использованием API
+    get_exchangerates_data - Функция проводит конвертацию двух валют. С использованием API
     :param amount:          - конвертируемая сумма.
     :param amount_from:     - трехбуквенный код валюты, из которой происходит конвертация.
     :param amount_to:       - трехбуквенный код валюты, в которую происходит конвертация.
@@ -79,9 +79,19 @@ git clone https://github.com/palashco-lav/test_poetry.git
     :return:
 
 ### Модуль decorators
-    log(filename="") - декоратор ведения лгов для функций
+    log(filename="") - декоратор ведения логов для функций
     filename - путь к фалу храненния логов. По умолчанию вывод ведётся  в консоль
     
+### Модуль load_data
+    read_financial_trans_csv
+    Функция для считывает финансовые операций из CSV файла.
+    :param file_path: - путь к файлу
+
+    read_financial_trans_xlsx
+    Функция для считывает финансовые операций из XLSX файла.
+    :param file_path: - путь к файлу    
+    
+
 ### Тестирование
 test_masks.py       - проверка модуля masks, покрытие 100%
 
@@ -179,6 +189,16 @@ test_generators.py      - проверка модуля generators, покрыт
     
     Прроверка реакции функции неверные входные аргументы
         test_def_card_number_generator_wrong_arguments()
+
+test_load_data.py - проверка модуля loaf_data, покрытие 100%
+
+    Проверка работоспособности функции загрузки данных из CVS файла
+        test_read_financial_trans_csv
+
+    Проверка работоспособности функции загрузки данных из XLSX файла
+        test_read_financial_trans_xlsx
+
+
 
 ## Документация:
 

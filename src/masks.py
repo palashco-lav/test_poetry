@@ -2,14 +2,14 @@
 import logging
 from pathlib import Path
 
-
 logger_masks = logging.getLogger(__name__)
 logger_masks.setLevel(logging.DEBUG)
 
 # настройка обработчика и форматировщика для logger_masks
-handler_masks = logging.FileHandler(f'{Path(__file__).resolve().parent.parent}\\logs\\masks.log',
-                                    mode='w', encoding='utf-8')
-formatter_masks = logging.Formatter('%(asctime)s %(filename)s %(levelname)s: %(message)s')
+handler_masks = logging.FileHandler(
+    f"{Path(__file__).resolve().parent.parent}\\logs\\masks.log", mode="w", encoding="utf-8"
+)
+formatter_masks = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 
 # добавление форматировщика к обработчику
 handler_masks.setFormatter(formatter_masks)
@@ -38,7 +38,7 @@ def get_mask_account(account_number: str) -> str:
 
     # logger_masks = setup_logging()
 
-    logger_masks.debug(f'Получен номер карты: {account_number}')
+    logger_masks.debug(f"Получен номер карты: {account_number}")
     # Проверка, что номер счета состоит из цифр
     if len(account_number) == 0:
         logger_masks.error("Аргумент функции не должен быть пустым")

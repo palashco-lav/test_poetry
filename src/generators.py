@@ -11,11 +11,11 @@ def filter_by_currency(dicts_list: list, value: str) -> Iterator[list]:
     :return:
     """
 
-#    if len(dicts_list) == 0:
-#        raise ValueError("Входной список словарей не должен быть пустым")
-#
-#    if value == "":
-#        raise ValueError("Валюта операции не должна быть пустой")
+    #    if len(dicts_list) == 0:
+    #        raise ValueError("Входной список словарей не должен быть пустым")
+    #
+    #    if value == "":
+    #        raise ValueError("Валюта операции не должна быть пустой")
 
     for dict_element in dicts_list:
         if dict_element["operationAmount"]["currency"]["code"] == value:

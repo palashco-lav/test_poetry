@@ -11,6 +11,7 @@ def test_log_decorator_file_out(test_log_decorator_data: list) -> None:
     :param test_log_decorator_data:
     :return:
     """
+
     @log(filename="test_mylog.txt")
     def my_function(x: int, y: int) -> int:
         """
@@ -20,7 +21,8 @@ def test_log_decorator_file_out(test_log_decorator_data: list) -> None:
         :return:
         """
         return x + y
-# Удаляю файл тестового вывода данных
+
+    # Удаляю файл тестового вывода данных
     if os.path.isfile("test_mylog.txt"):
         os.remove("test_mylog.txt")
 
@@ -36,13 +38,13 @@ def test_log_decorator_file_out(test_log_decorator_data: list) -> None:
     os.remove("test_mylog.txt")
 
 
-def test_log_decorator_console_out(capsys: pytest.CaptureFixture[str],
-                                   test_log_decorator_data: list) -> None:
+def test_log_decorator_console_out(capsys: pytest.CaptureFixture[str], test_log_decorator_data: list) -> None:
     """
     Проверка вывода данных в консоль
     :param capsys:
     :return:
     """
+
     @log()
     def my_function_console_out(x: int, y: int) -> int:
         """
@@ -59,13 +61,15 @@ def test_log_decorator_console_out(capsys: pytest.CaptureFixture[str],
         assert data_test["expected_result"] == captured.out
 
 
-def test_log_decorator_error_console_out(capsys: pytest.CaptureFixture[str],
-                                         test_log_decorator_data_errors: list) -> None:
+def test_log_decorator_error_console_out(
+    capsys: pytest.CaptureFixture[str], test_log_decorator_data_errors: list
+) -> None:
     """
     Проверка вывода данных в консоль
     :param capsys:
     :return:
     """
+
     @log()  #
     def my_function_console_out(x: int, y: int) -> int:
         """
@@ -75,9 +79,9 @@ def test_log_decorator_error_console_out(capsys: pytest.CaptureFixture[str],
         :return:
         """
         if not ((isinstance(x, int) or isinstance(x, float)) and (isinstance(y, int) or isinstance(y, float))):
-            raise ValueError('Переменные должны быть числами')
+            raise ValueError("Переменные должны быть числами")
         if x < 0 or y < 0:
-            raise ValueError('Переменные должны быть положительные')
+            raise ValueError("Переменные должны быть положительные")
         return x + y
 
     for data_test in test_log_decorator_data_errors:
@@ -86,13 +90,15 @@ def test_log_decorator_error_console_out(capsys: pytest.CaptureFixture[str],
         assert data_test["expected_result"] == captured.out
 
 
-def test_log_decorator_error_file_out(capsys: pytest.CaptureFixture[str],
-                                      test_log_decorator_data_errors: list) -> None:
+def test_log_decorator_error_file_out(
+    capsys: pytest.CaptureFixture[str], test_log_decorator_data_errors: list
+) -> None:
     """
     Проверка вывода данных в консоль
     :param capsys:
     :return:
     """
+
     @log(filename="test_mylog.txt")  #
     def my_function_file_out_2(x: int, y: int) -> int:
         """
@@ -102,9 +108,9 @@ def test_log_decorator_error_file_out(capsys: pytest.CaptureFixture[str],
         :return:
         """
         if not ((isinstance(x, int) or isinstance(x, float)) and (isinstance(y, int) or isinstance(y, float))):
-            raise ValueError('Переменные должны быть числами')
+            raise ValueError("Переменные должны быть числами")
         if x < 0 or y < 0:
-            raise ValueError('Переменные должны быть положительные')
+            raise ValueError("Переменные должны быть положительные")
         return x + y
 
     # Удаляю файл тестового вывода данных
