@@ -28,7 +28,7 @@ def count_transactions_by_category(transactions: list[dict], categories: list) -
     :return:
     """
     category_counts: dict = {category: 0 for category in categories}  # Инициализируем словарь
-    result_1 : list = []
+    result_1: list = []
     for transaction in transactions:
         if transaction.get("description", "") in categories:
             result_1.append(transaction.get("description", ""))
