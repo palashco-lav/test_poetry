@@ -1,4 +1,5 @@
 import re
+from collections import Counter
 
 
 def filter_transactions(transactions_in: list[dict], search_string: str) -> list[dict]:
@@ -27,11 +28,11 @@ def count_transactions_by_category(transactions: list[dict], categories: list) -
     :return:
     """
     category_counts: dict = {category: 0 for category in categories}  # Инициализируем словарь
-
+    result_1 : list = []
     for transaction in transactions:
-        description = transaction.get("description", "")
-        for category in categories:
-            if category in description:
-                category_counts[category] += 1
+        if transaction.get("description", "") in categories:
+            result_1.append(transaction.get("description", ""))
+
+    category_counts = dict(Counter(result_1))
 
     return category_counts
