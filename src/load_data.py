@@ -7,7 +7,7 @@ def read_financial_trans_csv(file_path: str) -> list:
     :param file_path: - путь к файлу
     :return:
     """
-    with open(file_path) as file:
+    with open(file_path, encoding="utf-8") as file:
         # Загружаем CSV файл в DataFrame
         df = pd.read_csv(file, sep=";")
 
