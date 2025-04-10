@@ -10,8 +10,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 @patch("builtins.open", new_callable=mock_open, read_data="1")
-def test_read_financial_trans_csv(mock_read_financial_trans_csv: MagicMock,
-                                  test_read_financial_trans_csv_data: str) -> None:
+def test_read_financial_trans_csv(
+    mock_read_financial_trans_csv: MagicMock, test_read_financial_trans_csv_data: str
+) -> None:
 
     data = test_read_financial_trans_csv_data
 

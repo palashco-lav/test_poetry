@@ -91,6 +91,22 @@ git clone https://github.com/palashco-lav/test_poetry.git
     Функция для считывает финансовые операций из XLSX файла.
     :param file_path: - путь к файлу    
     
+### Модуль search_bank_operations
+    count_transactions_by_category
+    Функция принимает список словарей с данными о банковских операциях и строку поиска, а возвращать
+    список словарей, у которых в описании есть данная строка.
+    :param transactions_in:
+    :param search_string:
+    :return:
+
+    count_transactions_by_category
+    Функция принимает список словарей с данными о банковских операциях и список категорий операций.
+    Возвращать словарь, в котором ключи — это названия категорий,
+    а значения — это количество операций в каждой категории.
+    :param transactions: Список словарей с данными о банковских операциях.
+    :param categories: Список категорий операций.
+    :return:
+
 
 ### Тестирование
 test_masks.py       - проверка модуля masks, покрытие 100%
@@ -198,6 +214,13 @@ test_load_data.py - проверка модуля loaf_data, покрытие 10
     Проверка работоспособности функции загрузки данных из XLSX файла
         test_read_financial_trans_xlsx
 
+test_search_bank_operations.py  - проверка модуля search_bank_operations, покрытие 100%
+
+    Проверка функции filter_transactions
+        test_filter_transactions
+    
+    Проверка функции count_transactions_by_category
+        test_count_transactions_by_category
 
 
 ## Документация:
