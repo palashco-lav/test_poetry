@@ -39,8 +39,13 @@ def sort_by_date(dicts_to_sort: list, sort_decrease: bool = True) -> list:
     if len(dicts_to_sort) == 0:
         raise ValueError("Длина списка нулевая")
 
-    dicts_result = sorted(
-        dicts_to_sort, key=lambda p: datetime.strptime(p["date"], "%Y-%m-%dT%H:%M:%S.%f"), reverse=sort_decrease
-    )
+    if dicts_to_sort[0]["date"][-1] == "Z":
+        dicts_result = sorted(
+            dicts_to_sort, key=lambda p: datetime.strptime(p["date"], "%Y-%m-%dT%H:%M:%SZ"), reverse=sort_decrease
+        )
+    else:
+        dicts_result = sorted(
+            dicts_to_sort, key=lambda p: datetime.strptime(p["date"], "%Y-%m-%dT%H:%M:%S.%f"), reverse=sort_decrease
+        )
 
     return dicts_result
