@@ -1,5 +1,6 @@
 import re
 from collections import Counter
+from operator import itemgetter
 
 
 def filter_transactions(transactions_in: list[dict], search_string: str) -> list[dict]:
@@ -27,12 +28,9 @@ def count_transactions_by_category(transactions: list[dict], categories: list) -
     :param categories: Список категорий операций.
     :return:
     """
-    category_counts: dict = {category: 0 for category in categories}  # Инициализируем словарь
-    result_1: list = []
-    for transaction in transactions:
-        if transaction.get("description", "") in categories:
-            result_1.append(transaction.get("description", ""))
 
-    category_counts = dict(Counter(result_1))
+    category_counts = dict(
+        Counter(filter(lambda x: True if x in categories else False, map(itemgetter("description"), transactions)))
+    )
 
     return category_counts

@@ -22,4 +22,4 @@ def test_count_transactions_by_category(test_get_json_list: str) -> None:
     data = json.loads(test_get_json_list)
     result = count_transactions_by_category(data, categories)
 
-    assert result == {"Перевод организации": 2, "Открытие вклада": 1}
+    assert result == {"Открытие вклада": 1, "Перевод организации": 2}
