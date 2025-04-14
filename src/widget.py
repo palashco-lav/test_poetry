@@ -27,7 +27,10 @@ def get_date(time_to_convert: str) -> str:
     if time_to_convert == "":
         raise ValueError("Данные для обработки отсутствуют")
     try:
-        time_to_convert_2 = datetime.strptime(time_to_convert, "%Y-%m-%dT%H:%M:%S.%f")
+        if time_to_convert[-1] != "Z":
+            time_to_convert_2 = datetime.strptime(time_to_convert, "%Y-%m-%dT%H:%M:%S.%f")
+        else:
+            time_to_convert_2 = datetime.strptime(time_to_convert, "%Y-%m-%dT%H:%M:%SZ")
 
     except ValueError:
         raise ValueError("Это не дата")

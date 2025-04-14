@@ -333,7 +333,9 @@ def test_get_json_list() -> str:
                         "name": "USD",
                         "code": "USD"
                     }
-                }
+                },
+                "description": "Открытие вклада",
+                "to": "Счет 41421565395219882431"
             }
         ]"""
 
